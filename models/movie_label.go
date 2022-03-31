@@ -89,7 +89,7 @@ func (d *MovieLabel) GetMovieLabelCategoryAssociate(where string) map[string]map
 	res := map[string]map[string]string{}
 	q := `SELECT A.cid,A.lid,B.name 
 		FROM movie_label_category_associate A
-		LEFT JOIN movie_label_category B
+		LEFT JOIN movie_category B
 		ON A.cid=B.id 
 		WHERE A.status=1 and B.status=1 %s`
 	if len(where) > 1 {

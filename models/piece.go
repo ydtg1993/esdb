@@ -38,9 +38,9 @@ type Piece struct {
  */
 func (d *Piece) Lists(mid int, updatedAt string, limit int) (lastid int, res []*Piece) {
 
-	q := `SELECT id,uid,name,cover,movie_sum,
-			pv_browse_sum,intro,status,is_hot,authority,
-			type,audit,ifnull('',remarks),created_at,ifnull(updated_at,created_at) 
+	q := `SELECT id,uid,name,cover,movie_sum,like_sum,
+			pv_browse_sum,ifnull(intro,'') intro,status,is_hot,authority,
+			type,audit,ifnull(remarks,'') remarks,created_at,ifnull(updated_at,created_at) updated_at 
 		FROM movie_piece_list 
 		where id>? and ifnull(updated_at,created_at)>=? order by id asc limit %d;`
 	q = fmt.Sprintf(q, limit)
@@ -55,7 +55,7 @@ func (d *Piece) Lists(mid int, updatedAt string, limit int) (lastid int, res []*
 	//扫描数据
 	for rows.Next() {
 		dd := new(Piece)
-		er := rows.Scan(&dd.Id, &dd.Uid, &dd.Name, &dd.Cover, &dd.MovieSum,
+		er := rows.Scan(&dd.Id, &dd.Uid, &dd.Name, &dd.Cover, &dd.MovieSum, &dd.LikeSum,
 			&dd.PvBrowseSum, &dd.Intro, &dd.Status, &dd.IsHot, &dd.Authority,
 			&dd.Type, &dd.Audit, &dd.Remarks, &dd.CreatedAt, &dd.UpdatedAt)
 

@@ -27,7 +27,7 @@ type MovieSeries struct {
 * param 	updatedAt 最后更新时间
  */
 func (d *MovieSeries) Lists(sid int, where, updatedAt string, limit int) (lastid int, res []*MovieSeries) {
-	q := `SELECT id,name,status,movie_sum,like_sum,
+	q := `SELECT id,ifnull(name,''),status,movie_sum,like_sum,
 		created_at,ifnull(updated_at,created_at) 
 		FROM movie_series
 		where id>? and ifnull(updated_at,created_at)>? %s

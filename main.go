@@ -2,7 +2,6 @@ package main
 
 import (
 	"esdb/pool"
-	_ "esdb/routers"
 	"fmt"
 	"os"
 	"runtime"
