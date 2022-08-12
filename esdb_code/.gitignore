@@ -1,0 +1,8 @@
+/.idea/*
+/logsesdb.error.log
+/logsesdb.log
+esdb.exe
+*.log
+.idea
+/runtime/logs
+.env

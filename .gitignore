@@ -1,3 +1,4 @@
 .DS_Store
-esdb
-esdb.zip
+conf/
+app.conf
+/pkg
